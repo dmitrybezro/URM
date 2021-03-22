@@ -284,17 +284,19 @@ void DirichleT::OutputFile(int _sizeX, int _sizeY, TVector<double> _borderX, TVe
 	//  Шаг Y
 	fout << k << endl;
 
-	double** z = new double* [_sizeX + 1];
-	for (int i = 0; i < _sizeX + 1; i++) {
-		z[i] = new double[_sizeY + 1];
+	double** z = new double* [_sizeY + 1];
+	for (int j = 0; j < _sizeY + 1; j++) {
+		z[j] = new double[_sizeX + 1];
 	}
 	//  Заполнили массив значения
 	GetRes(z);
 
 	//  Значения в файл
-	for (int j = 0; j < _sizeX + 1; j++)
-		for (int i = 0; i < _sizeY + 1; i++)
+	for (int j = _sizeY; j >=0; j--) {
+		for (int i = 0; i < _sizeX + 1; i++) {
 			fout << z[j][i] << endl;
+		}
+	}
 	fout.close();
 
 	system("python parser.py");

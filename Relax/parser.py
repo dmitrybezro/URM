@@ -16,7 +16,8 @@ try:
 	xBorder1 = float(nums[2])
 	xBorder2 = float(nums[3])
 	StepX = float(nums[4])
-	x = np.arange(xBorder1, xBorder2 + StepX/10, StepX)
+	x = np.arange(xBorder1, xBorder2 + StepX/100, StepX)
+	# print(len(x))
 	# print(x)
 
 	y = [] 
@@ -24,12 +25,14 @@ try:
 	yBorder1 = int(nums[5])
 	yBorder2 = int(nums[6])
 	StepY = float(nums[7])
-	y = np.arange(yBorder1, yBorder2 + StepY/10, StepY)
+	y = np.arange(yBorder1, yBorder2 + StepY/100, StepY)
+	# print(len(y))
 	# print(y)
 
 	grid = []
 	for i in range(8,8 + int(number_x)*int(number_y)):
 		grid.append(nums[i])
+	print(len(grid))
 
 finally:
    f.close()
@@ -46,13 +49,14 @@ for i, elem in enumerate(grid):
 
 #  Преобразовали массив значений сетки из строк 
 z = np.array(grid)
+
 #  Задали ему размерность
-Z = z.reshape(number_x,number_y)
+Z = z.reshape(X.shape)
 
 axes.plot_surface(X, Y, Z, rstride= 3, cstride=3, cmap = 'inferno' ) #  'coolwarm' cm.jet
 axes.set_xlabel('X')
 axes.set_ylabel('Y')
 axes.set_zlabel('Z')
-fig.canvas.set_window_title('Валера - молодец! Но допиши код для лабы!!!')
+fig.canvas.set_window_title('Задача Дирихле для уравнения Пуассона - МВР')
 
 pylab.show()
